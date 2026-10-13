@@ -28,8 +28,16 @@ public class InventoryService {
 
     }
 
-    public Inventory checkStock(Long productId) {
-        Optional<Inventory> inventory = inventoryRepository.findById(productId);
-        return  inventory.get();
+    public Inventory checkStock(Long productId) throws Exception {
+
+
+
+
+            Optional<Inventory> inventory = inventoryRepository.findById(productId);
+
+            //for retry pattern
+            //throw new RuntimeException("Database connection failed");
+            return inventory.get();
+        }
     }
-}
+
